@@ -11,7 +11,7 @@ function MenuPrincipal(){
       };
     return(
         <div className="toggle">
-            <h2>Hola mundo</h2>
+            <h2>Menu Principal</h2>
             <div className="sidebar">
             <div >
                 <a
