@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './MenuAdmin.css';
 
 function MenuMarcas(){
     const navigate = useNavigate();
@@ -21,14 +22,42 @@ function MenuMarcas(){
       const irAEliminarMarcas = () => {
         navigate('/eliminarMarca'); // Redirige a BorrarAsiento.js
       };
+      const [activeLink, setActiveLink] = useState(null);
     return(
-        <div className="sidebar">
-            <a href="#" onClick={() => handleNavigation('/menuPrincipal')}> <h3>Menu Principal</h3> </a> {/* Boton para ir a l menu principal*/}
-            <a href="#" onClick={() => handleNavigation('/menuMarcas')}> <h3>Menu Marcas</h3> </a> {/* Boton para ir a l menu marcas*/}
-            {/*<a href="#" onClick={() => handleNavigation('/menuModelos')}> <h3>Menu Modelos</h3> </a>  Boton para ir a l menu modelos*/}
+      <div className='MenuPrincipal'>
+      <aside>
+      <div className="toggle">
+          <h2>Menu Marcas</h2>
+          <div className="sidebar">
+          <div >
+              <a
+                href="#"
+                className={activeLink === 0 ? 'active clicked' : ''} 
+                onClick={() => handleNavigation('/menuprincipal', 0)}
+              >
+                <h3>Volver a Menu Principal</h3>
+              </a>
+              <a
+                href="#"
+                className={activeLink === 1 ? 'active clicked' : ''}
+                onClick={() => handleNavigation('/menuModelos', 1)}
+              >
+                <h3>Menu Modelos</h3>
+              </a>
+              <a
+                href="#"
+                className={activeLink === 2 ? 'active clicked' : ''}
+                onClick={() => handleNavigation('/',2)}
+              >
+                <h3>Cerrar sesión</h3>
+              </a>
+              </div>
+          </div>
+      </div>
+      </aside>
             <div className='Contenedor'>
                 <h2>Elige la acción que deseas realizar</h2>
-                <div class="button-container">
+                <div className="button-container">
                     <button onClick={iraTodasLasMarcas}>Mostrar todas las marcas</button> {/* Nuevo botón */}
                     <button onClick={irAAgregarMarca}>Agregar marca</button>
                     <button onClick={irAEditarMarcas}> Editar marca</button>

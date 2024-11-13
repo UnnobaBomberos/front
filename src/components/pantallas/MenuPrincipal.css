@@ -1,0 +1,68 @@
+/* Estilo general para la página */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.ContenedorMenuPrincipal {
+    display: flex;
+    height: 100%;
+}
+
+/* Menú fijo a la izquierda */
+aside {
+    position: fixed; /* El menú estará fijo en el lado izquierdo */
+    top: 0;
+    left: 0;
+    height: 100%; /* Ocupa toda la altura de la página */
+    width: 250px; /* Ancho del menú */
+    background-color: #333; /* Fondo oscuro */
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.toggle h2 {
+    margin: 0;
+    padding-bottom: 20px;
+    color: #8000ff; /* Título con el color principal */
+}
+
+/* Enlaces de la barra lateral */
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 4px solid transparent; /* Línea decorativa en el borde izquierdo */
+    transition: background-color 0.3s, border-left-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #444; /* Fondo oscuro al pasar el ratón */
+    border-left-color: #8000ff; /* Línea decorativa en el borde izquierdo en el color principal */
+}
+
+.sidebar a.active, .sidebar a.clicked {
+    background-color: #555; /* Fondo diferente para el enlace activo */
+    border-left-color: #8000ff; /* Línea decorativa en el color principal para el enlace activo */
+    font-weight: bold;
+}
+
+/* Contenedor vacío centrado en el medio */
+.Vacio {
+    flex-grow: 1; /* Hace que ocupe todo el espacio restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Fondo claro */
+    padding: 20px;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    box-sizing: border-box;
+}
+

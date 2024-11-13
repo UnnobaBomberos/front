@@ -1,0 +1,41 @@
+/* Estilos para el contenedor centrado */
+.Contenedor {
+  background-color: #ffffff;
+  padding: 260px;
+  border-radius: 20px;
+  max-width: 400px; /* Ancho máximo para el contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  text-align: center;
+}
+
+/* Título */
+.Contenedor h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5em;
+}
+
+/* Botones */
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Estilos de los botones */
+.button-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #ffffff;
+  background-color: #8000ff; /* Fondo en el color principal */
+  border: 2px solid transparent; /* Borde transparente para una apariencia limpia */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #5e00b3; /* Color de fondo más oscuro al pasar el ratón */
+  border-color: #8000ff; /* Borde del color principal */
+}

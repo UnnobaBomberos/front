@@ -10,6 +10,8 @@ function MenuPrincipal(){
         navigate(path);
       };
     return(
+      <div className='MenuPrincipal'>
+        <aside>
         <div className="toggle">
             <h2>Menu Principal</h2>
             <div className="sidebar">
@@ -37,6 +39,11 @@ function MenuPrincipal(){
                 </a>
                 </div>
             </div>
+        </div>
+        </aside>
+        <div className=' vacio'>
+          <h2>hola mundo</h2>
+        </div>
         </div>
     );
 }
