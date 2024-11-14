@@ -1,72 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Eliminar.css';
 
 function EliminarModelo() {
-  const [modelos, setModelos] = useState([]); // Lista de modelos
-  const [loading, setLoading] = useState(true); // Estado de carga
-  const [selectedModelo, setSelectedModelo] = useState(null); // Modelo seleccionado
-  const [error, setError] = useState(null); // Manejo de errores
+    const [searchQuery, setSearchQuery] = useState(''); // Campo de búsqueda por nombre
+    const [modeloId, setModeloId] = useState(null); // Estado para almacenar el ID del modelo
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchModelos = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/modelos');
-        if (!response.ok) {
-          throw new Error('No se pudo cargar la lista de modelos');
+    // Función para buscar el modelo por nombre
+    const buscarModeloPorNombre = async () => {
+        if (searchQuery.trim()) {
+            const response = await fetch(`http://localhost:8080/api/modelos/buscar/${searchQuery}`);
+            if (response.ok) {
+                const modelo = await response.json();
+                setModeloId(modelo.id); // Guardar el ID del modelo encontrado
+                alert('Modelo encontrado: ' + modelo.nombre);
+            } else {
+                alert('Modelo no encontrado');
+                setModeloId(null); // Limpiar el ID si no se encuentra el modelo
+            }
+        } else {
+            alert('Por favor, ingrese un nombre para buscar');
         }
-        const data = await response.json();
-        setModelos(data);
-      } catch (error) {
-        console.error('Error:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
     };
 
-    fetchModelos();
-  }, []);
+    // Función para eliminar el modelo
+    const eliminarModelo = async () => {
+        if (modeloId) {
+            const response = await fetch(`http://localhost:8080/api/modelos/${modeloId}`, {
+                method: 'DELETE'
+            });
 
-  const eliminarModelo = async () => {
-    if (!selectedModelo) {
-      alert('Por favor selecciona un modelo para eliminar');
-      return;
-    }
+            if (response.ok) {
+                alert('Modelo eliminado con éxito');
+                navigate('/menuModelos'); // Redirigir al menú de modelos
+            } else {
+                alert('Error al eliminar el modelo');
+            }
+        } else {
+            alert('Por favor, busque un modelo antes de intentar eliminarlo');
+        }
+    };
 
-    try {
-      const response = await fetch(`http://localhost:8080/api/modelos/${selectedModelo.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        setModelos(modelos.filter((modelo) => modelo.id !== selectedModelo.id));
-        alert('Modelo eliminado correctamente');
-      } else {
-        alert('Error al eliminar el modelo');
-      }
-    } catch (error) {
-      console.error('Error al eliminar el modelo', error);
-      alert('Error al conectar con el servidor');
-    }
-  };
-
-  if (loading) return <p>Cargando modelos...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-  return (
-    <div>
-      <h1>Eliminar Modelo</h1>
-      <h3>Selecciona un modelo para eliminar:</h3>
-      <select onChange={(e) => setSelectedModelo(JSON.parse(e.target.value))} value={selectedModelo ? JSON.stringify(selectedModelo) : ''}>
-        <option value="">--Seleccionar Modelo--</option>
-        {modelos.map((modelo) => (
-          <option key={modelo.id} value={JSON.stringify(modelo)}>
-            {modelo.nombre} ({modelo.año}) - {modelo.marca.nombre}
-          </option>
-        ))}
-      </select>
-      <button onClick={eliminarModelo} disabled={!selectedModelo}>Eliminar Modelo</button>
-    </div>
-  );
+    return (
+        <div className='menu-principal'>
+            <aside className='sidebar'>
+                <div className="toggle">
+                    <h2>Menu Modelos</h2>
+                    <div className="sidebar-links">
+                        <div>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/menuPrincipal')}
+                            >
+                                <h3>Volver a Menu Principal</h3>
+                            </a>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/menuMarcas')}
+                            >
+                                <h3>Menu Marcas</h3>
+                            </a>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/')}
+                            >
+                                <h3>Cerrar sesión</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div className='eliminar-container'>
+                <div className='eliminar'>
+                    <h3>Eliminar Modelo</h3>
+                    <div className='search-bar'>
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button onClick={buscarModeloPorNombre}>Buscar</button>
+                    </div>
+                    <div>
+                        <button onClick={eliminarModelo} disabled={!modeloId}>Eliminar Modelo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default EliminarModelo;

@@ -1,0 +1,75 @@
+/* Estilos para el contenedor de Eliminar Marca */
+.eliminar-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px; /* Ajuste del margen superior para que se vea bien centrado */
+}
+
+.eliminar {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    width: 400px; /* Ajusta el ancho del contenedor */
+    text-align: center;
+}
+
+/* Estilos del título */
+.eliminar h3 {
+    color: #8000ff; /* Color violeta */
+    margin-bottom: 10px;
+}
+
+/* Estilo para la barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.search-bar input {
+    width: 200px;
+    padding: 8px;
+    margin-right: 10px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilo del botón de búsqueda */
+.search-bar button {
+    background-color: #8000ff;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-bar button:hover {
+    background-color: #6600cc;
+}
+
+/* Estilo para el botón de eliminar */
+.eliminar button {
+    background-color: #8000ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.eliminar button:hover {
+    background-color: #6600cc;
+}
+
+.eliminar button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

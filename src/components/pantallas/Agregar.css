@@ -1,0 +1,82 @@
+.agregar-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo principal del contenedor */
+.agregar {
+    background-color: #fff;
+    padding: 100px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+}
+
+/* Ajuste del contenedor en la pantalla */
+.agregar-container {
+    margin-top: 200px; /* Ajusta este valor según prefieras */
+}
+
+/* Estilos de los labels */
+.agregar label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #8000ff;
+}
+
+/* Estilo de los inputs */
+.agregar input[type="text"],
+.agregar input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilo del botón */
+.agregar button {
+    background-color: #8000ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.agregar button:hover {
+    background-color: #6600cc;
+}
+
+/* Ocultar el input tipo archivo */
+input[type="file"] {
+    display: none;
+}
+
+/* Estilo del texto de AgregarModelo */
+.AgregarModelo {
+    color: #6600cc;
+}
+
+/* Estilo del botón personalizado */
+label.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8000ff; /* Color de fondo */
+    color: white; /* Color de texto */
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+label.custom-file-upload:hover {
+    background-color: #6600cc;
+}
+
+

@@ -1,0 +1,82 @@
+/* Estilos para el contenedor de Editar Marca */
+.editar-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.editar {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+}
+
+.editar h3 {
+    color: #8000ff;
+    margin-bottom: 10px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 200px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    background-color: #8000ff;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-bar button:hover {
+    background-color: #6600cc;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.editar button {
+    background-color: #8000ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.editar button:hover {
+    background-color: #6600cc;
+}
+
+.editar button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

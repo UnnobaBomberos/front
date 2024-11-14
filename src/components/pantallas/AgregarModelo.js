@@ -1,121 +1,135 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Agregar.css';
 
-
-const AgregarModelo = () => {
-    const navigate = useNavigate();
+function AgregarModelo() {
     const [nombre, setNombre] = useState('');
-    const [año, setAño] = useState('');
-    const [marca_id, setmarca_id] = useState('');
-    const [imageRes, setImageRes] = useState(null);
-    const [pdf, setPdf] = useState(null);
-    const [marcas, setMarcas] = useState([]);
+    const [imagen, setImagen] = useState(null);
+    const [activeLink, setActiveLink] = useState(null);
+    const navigate = useNavigate();
 
     const handleNavigation = (path, index) => {
-      navigate(path);
+        setActiveLink(index);
+        navigate(path);
     };
 
-    useEffect(() => {
-        // Cargar las marcas disponibles para seleccionar
-        fetch('http://localhost:8080/api/marcas')
-            .then(response => response.json())
-            .then(data => setMarcas(data))
-            .catch(error => console.error('Error al cargar marcas:', error));
-    }, []);
-
-    const handleImageChange = (e) => {
-        setImageRes(e.target.files[0]);
+    // Manejar la carga del archivo
+    const handleFileChange = (event) => {
+        setImagen(event.target.files[0]);
     };
 
-    const handlePdfChange = (e) => {
-        setPdf(e.target.files[0]);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData();
-        formData.append("nombre", nombre);
-        formData.append("año", año);
-        formData.append("marca_id", marca_id);
-        if (imageRes) formData.append("imageRes", imageRes);
-        if (pdf) formData.append("pdf", pdf);
+    // Manejar la creación del modelo
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8080/api/modelos", {
-                method: "POST",
+            // Paso 1: Subir la imagen
+            const formData = new FormData();
+            formData.append('file', imagen);
+
+            const uploadResponse = await fetch('http://localhost:8080/api/files/upload', {
+                method: 'POST',
                 body: formData,
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                alert("Modelo agregado con éxito: " + data.nombre);
-            } else {
-                alert("Error al agregar el modelo");
+            if (!uploadResponse.ok) {
+                throw new Error('Error al cargar el archivo');
             }
+
+            // Obtener la URL de la imagen desde la respuesta
+            const imagenUrl = await uploadResponse.text();
+
+            // Paso 2: Crear el modelo con la URL de la imagen
+            const modeloData = {
+                nombre: nombre,
+                imagenUrl: imagenUrl,
+            };
+
+            const modeloResponse = await fetch('http://localhost:8080/api/modelos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(modeloData),
+            });
+
+            if (!modeloResponse.ok) {
+                throw new Error('Error al crear el modelo');
+            }
+
+            alert('Modelo creado con éxito');
+            
+            // Reiniciar el formulario
+            setNombre('');
+            setImagen(null);
+
         } catch (error) {
-            console.error("Error:", error);
-            alert("Error al enviar la solicitud");
+            console.error('Error:', error);
+            alert('Hubo un error al crear el modelo');
         }
     };
 
     return (
-      <div className="sidebar">
-      <a href="#" onClick={() => handleNavigation('/menuPrincipal')}>
-        <h3>Menu Principal</h3>
-      </a>
-      <a href="#" onClick={() => handleNavigation('/menuMarcas')}>
-        <h3>Menu Marcas</h3>
-      </a>
-      <a href="#" onClick={() => handleNavigation('/menuModelos')}>
-        <h3>Menu Modelos</h3>
-      </a>
-      <a href="#" onClick={() => handleNavigation('/')}>
-        <h3>Cerrar sesión</h3>
-      </a>
-      <div className='agregar'>
-            <h1>Agregar Modelo</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Nombre del modelo:</label>
-                    <input
-                        type="text"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        required
-                    />
+        <div className='MenuPrincipal'>
+            <aside>
+                <div className="toggle">
+                    <h2>Menu Modelos</h2>
+                    <div className="sidebar">
+                        <div>
+                            <a
+                                href="#"
+                                className={activeLink === 0 ? 'active clicked' : ''}
+                                onClick={() => handleNavigation('/menuprincipal', 0)}
+                            >
+                                <h3>Volver a Menu Principal</h3>
+                            </a>
+                            <a
+                                href="#"
+                                className={activeLink === 1 ? 'active clicked' : ''}
+                                onClick={() => handleNavigation('/menuMarcas', 1)}
+                            >
+                                <h3>Menu Marcas</h3>
+                            </a>
+                            <a
+                                href="#"
+                                className={activeLink === 2 ? 'active clicked' : ''}
+                                onClick={() => handleNavigation('/', 2)}
+                            >
+                                <h3>Cerrar sesión</h3>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Año:</label>
-                    <input
-                        type="number"
-                        value={año}
-                        onChange={(e) => setAño(e.target.value)}
-                        required
-                    />
+            </aside>
+            <div className='agregar-container'>
+                <div className='agregar'>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>Nombre del Modelo:</label>
+                            <input
+                                type="text"
+                                value={nombre}
+                                onChange={(e) => setNombre(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="imagen" className="custom-file-upload">
+                                Seleccionar archivo
+                            </label>
+                            <input
+                                id="imagen"
+                                type="file"
+                                onChange={handleFileChange}
+                                required
+                            />
+                        </div>
+                        <button type="submit">Crear Modelo</button>
+                    </form>
                 </div>
-                <div>
-                    <label>Marca:</label>
-                    <select value={marca_id} onChange={(e) => setmarca_id(e.target.value)} required>
-                        <option value="">Seleccionar Marca</option>
-                        {marcas.map((marca) => (
-                            <option key={marca.id} value={marca.id}>{marca.nombre}</option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label>Imagen:</label>
-                    <input type="file" onChange={handleImageChange} />
-                </div>
-                <div>
-                    <label>PDF:</label>
-                    <input type="file" onChange={handlePdfChange} />
-                </div>
-                <button type="submit">Agregar Modelo</button>
-            </form>
-        </div>
+            </div>
         </div>
     );
-};
+}
 
 export default AgregarModelo;

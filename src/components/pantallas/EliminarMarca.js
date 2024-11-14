@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Eliminar.css'; // Asegúrate de que el archivo CSS esté bien importado
 
 function EliminarMarca() {
     const [searchQuery, setSearchQuery] = useState(''); // Campo de búsqueda por nombre
@@ -42,32 +43,49 @@ function EliminarMarca() {
     };
 
     return (
-        <div className="sidebar">
-            <a href="#" onClick={() => navigate('/menuPrincipal')}>
-                <h3>Menu Principal</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/menuMarcas')}>
-                <h3>Menu Marcas</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/menuModelos')}>
-                <h3>Menu Modelos</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/')}>
-                <h3>Cerrar sesión</h3>
-            </a>
-            <div className='Eliminar'>
-                <h3>Eliminar Marca</h3>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <button onClick={buscarMarcaPorNombre}>Buscar</button>
+        <div className='menu-principal'>
+            <aside className='sidebar'>
+                <div className="toggle">
+                    <h2>Menu Marcas</h2>
+                    <div className="sidebar-links">
+                        <div>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/menuPrincipal')}
+                            >
+                                <h3>Volver a Menu Principal</h3>
+                            </a>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/menuModelos')}
+                            >
+                                <h3>Menu Modelos</h3>
+                            </a>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/')}
+                            >
+                                <h3>Cerrar sesión</h3>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={eliminarMarca} disabled={!marcaId}>Eliminar Marca</button>
+            </aside>
+            <div className='eliminar-container'>
+                <div className='eliminar'>
+                    <h3>Eliminar Marca</h3>
+                    <div className='search-bar'>
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button onClick={buscarMarcaPorNombre}>Buscar</button>
+                    </div>
+                    <div>
+                        <button onClick={eliminarMarca} disabled={!marcaId}>Eliminar Marca</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,3 +93,4 @@ function EliminarMarca() {
 }
 
 export default EliminarMarca;
+

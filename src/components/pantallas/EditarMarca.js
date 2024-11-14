@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './EditarMarca.css';
 
 function EditarMarca() {
     const [nombre, setNombre] = useState('');
     const [logo, setLogo] = useState(null);
     const [logoUrl, setLogoUrl] = useState('');
-    const [searchQuery, setSearchQuery] = useState(''); // Campo de búsqueda
-    const [marcaId, setMarcaId] = useState(null); // Estado para almacenar el ID de la marca
-    const { id } = useParams(); // Para obtener el ID de la marca a editar, si existe
+    const [searchQuery, setSearchQuery] = useState('');
+    const [marcaId, setMarcaId] = useState(null);
+    const { id } = useParams();
     const navigate = useNavigate();
 
-    // Obtener la información de la marca para editar (si el ID está disponible)
+    const [activeLink, setActiveLink] = useState(null);
+
+    const handleNavigation = (path, index) => {
+        setActiveLink(index);
+        navigate(path);
+    };
+
     useEffect(() => {
         if (id) {
-            console.log('ID de la marca:', id);
             const fetchMarca = async () => {
                 const response = await fetch(`http://localhost:8080/api/marcas/${id}`);
                 if (response.ok) {
                     const marca = await response.json();
                     setNombre(marca.nombre);
-                    setLogoUrl(marca.logoUrl); // Cargar el logo actual
-                    setMarcaId(marca.id); // Guardar el ID de la marca
+                    setLogoUrl(marca.logoUrl);
+                    setMarcaId(marca.id);
                 } else {
                     alert('No se pudo obtener la marca');
                 }
@@ -29,7 +35,6 @@ function EditarMarca() {
         }
     }, [id]);
 
-    // Función para buscar la marca por nombre
     const buscarMarcaPorNombre = async () => {
         if (searchQuery.trim()) {
             const response = await fetch(`http://localhost:8080/api/marcas/buscar/${searchQuery}`);
@@ -37,7 +42,7 @@ function EditarMarca() {
                 const marca = await response.json();
                 setNombre(marca.nombre);
                 setLogoUrl(marca.logoUrl);
-                setMarcaId(marca.id); // Establecer el ID de la marca cuando se encuentra
+                setMarcaId(marca.id);
             } else {
                 alert('Marca no encontrada');
             }
@@ -46,12 +51,10 @@ function EditarMarca() {
         }
     };
 
-    // Función para manejar el cambio de archivo (logo)
     const handleFileChange = (event) => {
         setLogo(event.target.files[0]);
     };
 
-    // Subir el logo y obtener su URL
     const uploadLogo = async () => {
         const formData = new FormData();
         formData.append('file', logo);
@@ -65,10 +68,9 @@ function EditarMarca() {
             throw new Error('Error al cargar el archivo');
         }
 
-        return await uploadResponse.text();  // Esto devuelve la URL del logo
+        return await uploadResponse.text();
     };
 
-    // Función para enviar los datos de la marca al backend
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -77,16 +79,14 @@ function EditarMarca() {
                 return;
             }
 
-            // Paso 1: Subir el logo si se seleccionó uno nuevo
-            let logoUrlFinal = logoUrl; // Si no se seleccionó un nuevo logo, mantener el anterior
+            let logoUrlFinal = logoUrl;
             if (logo) {
-                logoUrlFinal = await uploadLogo();  // Subir el logo y obtener la URL
+                logoUrlFinal = await uploadLogo();
             }
 
-            // Paso 2: Enviar los datos de la marca (nombre y logo)
             const marcaData = {
-                nombre: nombre,  // Nombre de la marca a actualizar
-                logoUrl: logoUrlFinal  // URL del logo (si fue actualizado)
+                nombre: nombre,
+                logoUrl: logoUrlFinal
             };
 
             const marcaResponse = await fetch(`http://localhost:8080/api/marcas/${marcaId}`, {
@@ -102,7 +102,7 @@ function EditarMarca() {
             }
 
             alert('Marca actualizada con éxito');
-            navigate('/menuMarcas'); // Redirigir a la lista de marcas
+            navigate('/menuMarcas');
         } catch (error) {
             console.error('Error:', error);
             alert('Hubo un error al actualizar la marca');
@@ -110,45 +110,70 @@ function EditarMarca() {
     };
 
     return (
-        <div className="sidebar">
-            <a href="#" onClick={() => navigate('/menuPrincipal')}>
-                <h3>Menu Principal</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/menuMarcas')}>
-                <h3>Menu Marcas</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/menuModelos')}>
-                <h3>Menu Modelos</h3>
-            </a>
-            <a href="#" onClick={() => navigate('/')}>
-                <h3>Cerrar sesión</h3>
-            </a>
-            <div className='Editar'>
-                <h3>Buscar y Editar Marca</h3>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <button onClick={buscarMarcaPorNombre}>Buscar</button>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Logo:</label>
-                        <input
-                            type="file"
-                            onChange={handleFileChange}
-                        />
-                        {logoUrl && (
-                            <div>
-                                <img src={logoUrl} alt="Logo Actual" width="100" />
-                            </div>
-                        )}
+        <div className="menu-principal">
+            <aside className="sidebar">
+                <div className="toggle">
+                    <h2>Menu Marcas</h2>
+                    <div className="sidebar-links">
+                        <div>
+                            <a
+                                href="#"
+                                className={activeLink === 0 ? 'active' : ''}
+                                onClick={() => handleNavigation('/menuPrincipal', 0)}
+                            >
+                                <h3>Volver a Menu Principal</h3>
+                            </a>
+                            <a
+                                href="#"
+                                className={activeLink === 1 ? 'active' : ''}
+                                onClick={() => handleNavigation('/menuModelos', 1)}
+                            >
+                                <h3>Menu Modelos</h3>
+                            </a>
+                            <a
+                                href="#"
+                                className={activeLink === 2 ? 'active' : ''}
+                                onClick={() => handleNavigation('/', 2)}
+                            >
+                                <h3>Cerrar sesión</h3>
+                            </a>
+                        </div>
                     </div>
-                    <button type="submit">Actualizar Marca</button>
-                </form>
+                </div>
+            </aside>
+
+            <div className="editar-container">
+                <div className="editar">
+                    <h3>Buscar y Editar Marca</h3>
+                    <div className="search-bar">
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button onClick={buscarMarcaPorNombre}>Buscar</button>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                placeholder="Nombre de la marca"
+                                value={nombre}
+                                onChange={(e) => setNombre(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="file"
+                                onChange={handleFileChange}
+                            />
+                        </div>
+                        <div>
+                            <button type="submit" disabled={!marcaId}>Actualizar Marca</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
