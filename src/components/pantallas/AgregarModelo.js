@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AgregarModelo = () => {
     const navigate = useNavigate();
-    const [nombre_modelo, setnombre_modelo] = useState('');
+    const [nombre, setNombre] = useState('');
     const [año, setAño] = useState('');
     const [marca_id, setmarca_id] = useState('');
     const [imageRes, setImageRes] = useState(null);
@@ -35,7 +35,7 @@ const AgregarModelo = () => {
         e.preventDefault();
         
         const formData = new FormData();
-        formData.append("nombre_modelo", nombre_modelo);
+        formData.append("nombre", nombre);
         formData.append("año", año);
         formData.append("marca_id", marca_id);
         if (imageRes) formData.append("imageRes", imageRes);
@@ -49,7 +49,7 @@ const AgregarModelo = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                alert("Modelo agregado con éxito: " + data.nombre_modelo);
+                alert("Modelo agregado con éxito: " + data.nombre);
             } else {
                 alert("Error al agregar el modelo");
             }
@@ -80,8 +80,8 @@ const AgregarModelo = () => {
                     <label>Nombre del modelo:</label>
                     <input
                         type="text"
-                        value={nombre_modelo}
-                        onChange={(e) => setnombre_modelo(e.target.value)}
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
                         required
                     />
                 </div>

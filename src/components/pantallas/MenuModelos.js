@@ -28,7 +28,6 @@ function MenuModelos() {
   const [activeLink, setActiveLink] = useState(null);
 
   return (
-
     <div className='MenuPrincipal'>
         <aside>
         <div className="toggle">

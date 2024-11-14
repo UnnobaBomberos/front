@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './MostrarMarcas.css';
 
 function MostrarMarcas() {
+  const [activeLink, setActiveLink] = useState(null);
   const [marcas, setMarcas] = useState([]);
   const navigate = useNavigate();
 
@@ -29,17 +30,37 @@ function MostrarMarcas() {
   }, []);
 
   return (
-    <div className="sidebar">
-      <a href="#" onClick={() => handleNavigation('/menuPrincipal')}>
-        <h3>Menu Principal</h3>
-      </a>
-      <a href="#" onClick={() => handleNavigation('/menuMarcas')}>
-        <h3>Menu Marcas</h3>
-      </a>
-      <a href="#" onClick={() => handleNavigation('/menuModelos')}>
-        <h3>Menu Modelos</h3>
-      </a>
-
+    <div className='Hola mundo'>
+       <aside>
+        <div className="toggle">
+            <h2>Menu Principal</h2>
+            <div className="sidebar">
+            <div >
+                <a
+                  href="#"
+                  className={activeLink === 0 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuMarcas', 0)}
+                >
+                  <h3>Menu Marcas</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 1 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/menuModelos', 1)}
+                >
+                  <h3>Menu Modelos</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 2 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/',2)}
+                >
+                  <h3>Cerrar sesión</h3>
+                </a>
+                </div>
+            </div>
+        </div>
+        </aside>
       <div className="marcas-container">
         <h1>Marcas de Autos</h1>
         <div className="marcas-grid">
@@ -50,7 +71,7 @@ function MostrarMarcas() {
                 <div className="flip-card-front">
                   <div className="profile-image">
                     <img
-                      src={marca.logoUrl}
+                      src={`http://localhost:8080/api/files/files/${marca.logoUrl}`}
                       alt={`${marca.nombre} logo`}
                       className="pfp"
                     />
@@ -66,7 +87,7 @@ function MostrarMarcas() {
           ))}
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 

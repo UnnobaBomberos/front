@@ -42,7 +42,7 @@ function MenuPrincipal(){
         </div>
         </aside>
         <div className=' vacio'>
-          <h2>hola mundo</h2>
+          <h2>Foto</h2>
         </div>
         </div>
     );
