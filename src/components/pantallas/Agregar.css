@@ -79,4 +79,18 @@ label.custom-file-upload:hover {
     background-color: #6600cc;
 }
 
+.custom-file-upload {
+    display: inline-block;
+    background-color: #6200ea;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.custom-file-upload:hover {
+    background-color: #3700b3;
+}
 

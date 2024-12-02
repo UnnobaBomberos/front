@@ -12,6 +12,9 @@ import EliminarMarca from './components/pantallas/EliminarMarca';
 import EliminarModelo from './components/pantallas/EliminarModelo';
 import MostrarMarcas from './components/pantallas/MostrarMarcas';
 import MostrarModelos from './components/pantallas/MostrarModelos';
+import GestionUsuarios from './components/pantallas/GestionUsuarios';
+import AgregarUsuarios from './components/pantallas/AgregarUsuario';
+import MostrarUsuarios from './components/pantallas/MostrarUsuarios';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
             <Route path="/editarModelo" element={<EditarModelo />} />
             <Route path="/eliminarMarca" element={<EliminarMarca />}/>
             <Route path="/eliminarModelo" element={<EliminarModelo />} />
+            <Route path='/menuUsuarios' element={<GestionUsuarios/>}/>
+            <Route path='/mostrarUsuarios' element={<MostrarUsuarios/>}/>
+            <Route path='/agregarUsuario' element={<AgregarUsuarios/>}/>
           </Routes>
         </div>
       </Router>      

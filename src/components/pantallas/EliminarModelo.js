@@ -6,7 +6,11 @@ function EliminarModelo() {
     const [searchQuery, setSearchQuery] = useState(''); // Campo de búsqueda por nombre
     const [modeloId, setModeloId] = useState(null); // Estado para almacenar el ID del modelo
     const navigate = useNavigate();
-
+    const [activeLink, setActiveLink] = useState(null);
+    const handleNavigation = (path, index) => {
+        setActiveLink(index);
+        navigate(path);
+      };
     // Función para buscar el modelo por nombre
     const buscarModeloPorNombre = async () => {
         if (searchQuery.trim()) {
@@ -44,33 +48,43 @@ function EliminarModelo() {
 
     return (
         <div className='menu-principal'>
-            <aside className='sidebar'>
-                <div className="toggle">
-                    <h2>Menu Modelos</h2>
-                    <div className="sidebar-links">
-                        <div>
-                            <a
-                                href="#"
-                                onClick={() => navigate('/menuPrincipal')}
-                            >
-                                <h3>Volver a Menu Principal</h3>
-                            </a>
-                            <a
-                                href="#"
-                                onClick={() => navigate('/menuMarcas')}
-                            >
-                                <h3>Menu Marcas</h3>
-                            </a>
-                            <a
-                                href="#"
-                                onClick={() => navigate('/')}
-                            >
-                                <h3>Cerrar sesión</h3>
-                            </a>
-                        </div>
-                    </div>
+        <aside>
+        <div className="toggle">
+            <h2>Menu</h2>
+            <div className="sidebar">
+            <div >
+            <a
+                  href="#"
+                  className={activeLink === 0 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuUsuarios', 0)}
+                >
+                  <h3>Menu usuarios</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 1 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuMarcas', 1)}
+                >
+                  <h3>Menu Marcas</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 2 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/menuModelos', 3)}
+                >
+                  <h3>Menu Modelos</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 4 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/',4)}
+                >
+                  <h3>Cerrar sesión</h3>
+                </a>
                 </div>
-            </aside>
+            </div>
+        </div>
+        </aside>
             <div className='eliminar-container'>
                 <div className='eliminar'>
                     <h3>Eliminar Modelo</h3>

@@ -31,29 +31,36 @@ function MostrarMarcas() {
 
   return (
     <div className='Hola mundo'>
-       <aside>
+      <aside>
         <div className="toggle">
-            <h2>Menu Principal</h2>
+            <h2>Menu</h2>
             <div className="sidebar">
             <div >
-                <a
+            <a
                   href="#"
                   className={activeLink === 0 ? 'active clicked' : ''} 
-                  onClick={() => handleNavigation('/menuMarcas', 0)}
+                  onClick={() => handleNavigation('/menuUsuarios', 0)}
+                >
+                  <h3>Menu usuarios</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 1 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuMarcas', 1)}
                 >
                   <h3>Menu Marcas</h3>
                 </a>
                 <a
                   href="#"
-                  className={activeLink === 1 ? 'active clicked' : ''}
-                  onClick={() => handleNavigation('/menuModelos', 1)}
+                  className={activeLink === 2 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/menuModelos', 3)}
                 >
                   <h3>Menu Modelos</h3>
                 </a>
                 <a
                   href="#"
-                  className={activeLink === 2 ? 'active clicked' : ''}
-                  onClick={() => handleNavigation('/',2)}
+                  className={activeLink === 4 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/',4)}
                 >
                   <h3>Cerrar sesión</h3>
                 </a>

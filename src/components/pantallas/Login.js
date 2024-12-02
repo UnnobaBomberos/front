@@ -14,8 +14,8 @@ function Login() {
             nombreUsuario: nombreUsuario,
             contrasenia: contrasenia,
         };
-    
         try {
+            console.log('Enviando:', loginData);
             const response = await fetch('http://localhost:8080/api/usuario/autenticar', {
                 method: 'POST',
                 headers: {
@@ -23,11 +23,12 @@ function Login() {
                 },
                 body: JSON.stringify(loginData),
             });
-    
+            
+            console.log('Respuesta:', response);
+            const data = await response.json();
+            console.log('Datos recibidos:', data);
+            
             if (response.ok) {
-                const data = await response.json(); // Aquí esperamos que la respuesta sea un JSON con 'success' y 'message'
-                console.log(data);
-    
                 if (data.success) {
                     alert('Inicio de sesión exitoso');
                     navigate('/menuprincipal');
@@ -35,14 +36,13 @@ function Login() {
                     alert('Credenciales incorrectas');
                 }
             } else {
-                console.error('Error en la autenticación');
-                alert('Hubo un error al intentar iniciar sesión');
+                alert('Error en la autenticación');
             }
         } catch (error) {
             console.error('Error en la solicitud:', error);
             alert('Hubo un error al intentar iniciar sesión');
         }
-    };
+    };        
     
 
     return (

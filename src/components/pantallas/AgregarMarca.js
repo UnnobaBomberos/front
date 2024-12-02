@@ -72,35 +72,42 @@ function AgregarMarca() {
     return (
         <div className='MenuPrincipal'>
             <aside>
-                <div className="toggle">
-                    <h2>Menu Marcas</h2>
-                    <div className="sidebar">
-                        <div>
-                            <a
-                                href="#"
-                                className={activeLink === 0 ? 'active clicked' : ''}
-                                onClick={() => handleNavigation('/menuprincipal', 0)}
-                            >
-                                <h3>Volver a Menu Principal</h3>
-                            </a>
-                            <a
-                                href="#"
-                                className={activeLink === 1 ? 'active clicked' : ''}
-                                onClick={() => handleNavigation('/menuModelos', 1)}
-                            >
-                                <h3>Menu Modelos</h3>
-                            </a>
-                            <a
-                                href="#"
-                                className={activeLink === 2 ? 'active clicked' : ''}
-                                onClick={() => handleNavigation('/', 2)}
-                            >
-                                <h3>Cerrar sesión</h3>
-                            </a>
-                        </div>
-                    </div>
+        <div className="toggle">
+            <h2>Menu</h2>
+            <div className="sidebar">
+            <div >
+            <a
+                  href="#"
+                  className={activeLink === 0 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuUsuarios', 0)}
+                >
+                  <h3>Menu usuarios</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 1 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuMarcas', 1)}
+                >
+                  <h3>Menu Marcas</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 2 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/menuModelos', 3)}
+                >
+                  <h3>Menu Modelos</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 4 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/',4)}
+                >
+                  <h3>Cerrar sesión</h3>
+                </a>
                 </div>
-            </aside>
+            </div>
+        </div>
+        </aside>
             <div className='agregar-container'>
                 <div className='agregar'>
                     <form onSubmit={handleSubmit}>

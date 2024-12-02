@@ -27,7 +27,7 @@ aside {
 /* Tarjetas de modelos */
 .modelos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
 }
 
@@ -84,7 +84,12 @@ aside {
 
 .card__description {
   margin: 10px 0 0;
-  font-size: 14px;
-  color: #777;
-  line-height: 1.4;
+  font-size: 16px; /* Tamaño de fuente aumentado */
+  color: #555; /* Contraste mejorado */
+  line-height: 1.6; /* Más espacio entre líneas */
+  text-align: justify; /* Alineación justificada para legibilidad */
+  max-width: 90%; /* Limita el ancho del texto */
+  overflow: hidden; /* Evita que el texto desborde la tarjeta */
+  text-overflow: ellipsis; /* Añade "..." si el texto es demasiado largo */
+  white-space: normal; /* Permite que el texto se divida en varias líneas */
 }

@@ -42,35 +42,42 @@ function MostrarModelos() {
   return (
     <div className='Hola mundo'>
     <aside>
-     <div className="toggle">
-         <h2>Menu Principal</h2>
-         <div className="sidebar">
-         <div >
-             <a
-               href="#"
-               className={activeLink === 0 ? 'active clicked' : ''} 
-               onClick={() => handleNavigation('/menuMarcas', 0)}
-             >
-               <h3>Menu Marcas</h3>
-             </a>
-             <a
-               href="#"
-               className={activeLink === 1 ? 'active clicked' : ''}
-               onClick={() => handleNavigation('/menuModelos', 1)}
-             >
-               <h3>Menu Modelos</h3>
-             </a>
-             <a
-               href="#"
-               className={activeLink === 2 ? 'active clicked' : ''}
-               onClick={() => handleNavigation('/',2)}
-             >
-               <h3>Cerrar sesión</h3>
-             </a>
-             </div>
-         </div>
-     </div>
-     </aside>
+        <div className="toggle">
+            <h2>Menu</h2>
+            <div className="sidebar">
+            <div >
+            <a
+                  href="#"
+                  className={activeLink === 0 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuUsuarios', 0)}
+                >
+                  <h3>Menu usuarios</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 1 ? 'active clicked' : ''} 
+                  onClick={() => handleNavigation('/menuMarcas', 1)}
+                >
+                  <h3>Menu Marcas</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 2 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/menuModelos', 3)}
+                >
+                  <h3>Menu Modelos</h3>
+                </a>
+                <a
+                  href="#"
+                  className={activeLink === 4 ? 'active clicked' : ''}
+                  onClick={() => handleNavigation('/',4)}
+                >
+                  <h3>Cerrar sesión</h3>
+                </a>
+                </div>
+            </div>
+        </div>
+        </aside>
       <div className="modelos-container">
         <h1>Modelos de Autos</h1>
         <div className="modelos-grid">
@@ -89,7 +96,8 @@ function MostrarModelos() {
                 <p className="card__title">{modelo.nombre_modelo}</p>
                 <p className="card__description">
                   Año: {modelo.año} <br />
-                  Marca: {modelo.marca?.nombre || "Marca desconocida"}
+                  Marca: {modelo.marca?.nombre || "Marca desconocida"}<br />
+                  Combustible: {modelo.tipoCombustible || 'No especificado'}
                 </p>
                 <button onClick={() => verPdf(modelo.pdf)}>
                   Ver PDF

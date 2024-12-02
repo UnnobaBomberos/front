@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './MenuPrincipal.css'
-
-function MenuPrincipal(){
+import './GestionUsuarios.css';
+function GestionUsuarios(){
     const navigate = useNavigate();
     const [activeLink, setActiveLink] = useState(null);
     const handleNavigation = (path, index) => {
         setActiveLink(index);
         navigate(path);
       };
+    const irAAgregarUsuario = () => {
+      navigate('/agregarUsuario'); // Redirige a RegistrarAsiento.js
+    };
+    const mostrarUsuarios = () => {
+      navigate('/mostrarUsuarios'); // Redirige a RegistrarAsiento.js
+    };
     return(
-      <div className='MenuPrincipal'>
-  <aside>
+        <div className='MenuPrincipal'>
+        <aside>
         <div className="toggle">
             <h2>Menu Principal</h2>
             <div className="sidebar">
@@ -48,9 +53,14 @@ function MenuPrincipal(){
             </div>
         </div>
         </aside>
-        <div className=' vacio'>
+        <div className='vacio'>
+        <h2>Elige la acción que deseas realizar</h2>
+                <div className="button-container">
+                    <button onClick={mostrarUsuarios}>Mostrar todos los usuario</button> {/* Nuevo botón */}
+                    <button onClick={irAAgregarUsuario}>Agregar nuevo usuario</button>
+                </div>
         </div>
-        </div>
+    </div>
     );
 }
-export default MenuPrincipal;
+export default GestionUsuarios;

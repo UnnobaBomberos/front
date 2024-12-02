@@ -1,0 +1,11 @@
+/* Contenedor vacío centrado en el medio */
+.Vacio {
+    flex-grow: 1; /* Hace que ocupe todo el espacio restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Fondo claro */
+    padding: 20px;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    box-sizing: border-box;
+}
