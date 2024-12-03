@@ -54,15 +54,46 @@ aside {
     font-weight: bold;
 }
 
-/* Contenedor vacío centrado en el medio */
 .Vacio {
-    flex-grow: 1; /* Hace que ocupe todo el espacio restante */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4; /* Fondo claro */
-    padding: 20px;
-    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    position: absolute; /* Posición absoluta para controlar completamente la ubicación */
+    top: 50%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Ajuste exacto al centro */
+    text-align: center; /* Centra el texto dentro del contenedor */
+    background-color: #f4f4f4;
+    width: 100%; /* Asegura que ocupe el ancho disponible */
+    height: 100vh; /* Asegura que ocupe toda la altura */
     box-sizing: border-box;
 }
 
+.MainContent {
+    background-color: #ffffff;
+    padding: 260px;
+    border-radius: 20px;
+    max-width: 400px; /* Ancho máximo para el contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+    text-align: center;
+}
+
+
+/* Mensaje de bienvenida */
+.welcome-message {
+    background-color: #ffffff;
+    padding: 260px;
+    border-radius: 20px;
+    max-width: 400px; /* Ancho máximo para el contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+    text-align: center;
+}
+
+.welcome-message h1 {
+    font-size: 2.5rem;
+    color: #8000ff; /* Tono principal */
+    margin: 0;
+}
+
+.welcome-message p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: #555;
+}

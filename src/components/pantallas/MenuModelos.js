@@ -39,7 +39,7 @@ function MenuModelos() {
                   className={activeLink === 0 ? 'active clicked' : ''} 
                   onClick={() => handleNavigation('/menuUsuarios', 0)}
                 >
-                  <h3>Menu usuarios</h3>
+                  <h3>Menu Usuarios</h3>
                 </a>
                 <a
                   href="#"
@@ -72,7 +72,6 @@ function MenuModelos() {
           <button onClick={iraTodosLosModelos}>Mostrar todos los modelos</button>
           <button onClick={irAAgregarModelos}>Agregar modelo</button>
           <button onClick={irAEditarModelos}>Editar modelo</button>
-          <button onClick={irAEliminarModelos}>Eliminar modelo</button>
         </div>
       </div>
     </div>

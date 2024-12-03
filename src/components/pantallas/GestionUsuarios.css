@@ -1,11 +1,42 @@
-/* Contenedor vacío centrado en el medio */
-.Vacio {
-    flex-grow: 1; /* Hace que ocupe todo el espacio restante */
+/* Estilos para el contenedor principal */
+.contenedor-principal {
+  background-color: #ffffff;
+  padding: 260px;
+  border-radius: 20px;
+  max-width: 400px; /* Ancho máximo para el contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  text-align: center;
+    
+  }
+  
+  /* Título */
+  .contenedor-principal h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5em;
+  }
+  
+  /* Botones */
+  /* Contenedor de botones */
+  .button-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4; /* Fondo claro */
-    padding: 20px;
-    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
-    box-sizing: border-box;
-}
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Estilos de los botones */
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #8000ff; /* Fondo en el color principal */
+    border: 2px solid transparent; /* Borde transparente para una apariencia limpia */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #5e00b3; /* Color de fondo más oscuro al pasar el ratón */
+    border-color: #8000ff; /* Borde del color principal */
+  }

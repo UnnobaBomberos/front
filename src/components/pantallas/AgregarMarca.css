@@ -1,0 +1,98 @@
+/* Contenedor principal del formulario */
+.agregar-container {
+    background-color: #ffffff;
+    padding: 260px;
+    border-radius: 20px;
+    max-width: 400px; /* Ancho máximo para el contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+    text-align: center;
+}
+
+/* Estilo del formulario */
+.agregar {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px; /* Ajusta el tamaño máximo del formulario */
+    width: 100%; /* Asegura que ocupe todo el espacio disponible hasta el máximo */
+    
+}
+
+/* Título del formulario */
+.agregar h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+/* Estilo para cada campo de entrada */
+.agregar div {
+    margin-bottom: 15px;
+}
+
+/* Etiquetas de los campos */
+.agregar label {
+    font-size: 1em;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilo de los campos de texto */
+.agregar input[type="text"],
+.agregar input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Estilo del botón */
+.agregar button {
+    width: 100%;
+    padding: 12px;
+    background-color: #8000ff; /* Color violeta */
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.agregar button:hover {
+    background-color: #5e00b3; /* Violeta más oscuro */
+    transform: translateY(-2px);
+}
+
+/* Estilo personalizado para el input de archivo */
+.agregar label.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8000ff;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    transition: background-color 0.3s ease;
+}
+
+.agregar label.custom-file-upload:hover {
+    background-color: #5e00b3;
+}
+
+/* Ajustes para el input de archivo, ocultándolo */
+.agregar input[type="file"] {
+    display: none;
+}
+
+/* Estilo de los enlaces activos en el sidebar (solo si el aside se afecta de alguna forma) */
+.MenuPrincipal .sidebar a.active {
+    background-color: #8000ff;
+    color: #fff;
+}

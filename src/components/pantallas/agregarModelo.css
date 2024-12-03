@@ -1,0 +1,44 @@
+/* Contenedor principal del formulario de agregar modelo */
+.agregar-modelo-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 60px auto; /* Centrado horizontal y con margen superior */
+    text-align: center;
+}
+  
+  /* Título del formulario */
+  .agregar-modelo-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8em;
+  }
+  
+  /* Estilos generales para los inputs y selects */
+  .agregar-modelo-container input,
+  .agregar-modelo-container select {
+    width: calc(100% - 20px); /* Ancho relativo */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+  }
+  
+  /* Botón de enviar */
+  .agregar-modelo-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #8000ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .agregar-modelo-container button:hover {
+    background-color: #5e00b3;
+  }
+  

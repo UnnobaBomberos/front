@@ -35,7 +35,7 @@ function MenuMarcas(){
                   className={activeLink === 0 ? 'active clicked' : ''} 
                   onClick={() => handleNavigation('/menuUsuarios', 0)}
                 >
-                  <h3>Menu usuarios</h3>
+                  <h3>Menu Usuarios</h3>
                 </a>
                 <a
                   href="#"
@@ -68,7 +68,6 @@ function MenuMarcas(){
                     <button onClick={iraTodasLasMarcas}>Mostrar todas las marcas</button> {/* Nuevo botón */}
                     <button onClick={irAAgregarMarca}>Agregar marca</button>
                     <button onClick={irAEditarMarcas}> Editar marca</button>
-                    <button onClick={irAEliminarMarcas}>Eliminar marca</button>
                 </div>
             </div>
         </div>

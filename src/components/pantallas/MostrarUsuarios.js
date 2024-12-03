@@ -54,7 +54,7 @@ function MostrarUsuario() {
                   className={activeLink === 0 ? 'active clicked' : ''} 
                   onClick={() => handleNavigation('/menuUsuarios', 0)}
                 >
-                  <h3>Menu usuarios</h3>
+                  <h3>Menu Usuarios</h3>
                 </a>
                 <a
                   href="#"
