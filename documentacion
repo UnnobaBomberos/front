@@ -1,0 +1,31 @@
+Login= obviamente es para que el usuario ponga el usuario y contraseña
+Menu Principal= va a mostrar las distintas opciones que va poder acceder el usuario
+Menu Marcas= en este menu el usuario va a poder ver todas las marcas, agregar y editar cada una
+Menu Modelos= en este menu el usuario va a poder ver todos los vehiculos que estan cargados, agregar y editar cada uno 
+Menu Usuarios= El usuario va a poder crear más usuarios pidiendo nombre de usuario y contraseña
+Aplicacion= Va a poder ver y descargar todas las versiones de la aplicacion movil y ver una descripcion de las actualizaciones
+Agregar Marca= pide el logo y el nombre
+Agregar Modelos= pide el nombre, año, una imagen, la hoja de rescate, marca, tipo de combustible y categoria
+Editar Marca= puede editar el nombre y el logo
+Editar Modelos= puede editar el nombre, año,la imagen, hoja de rescarte, marca tipo de combustible y categoria
+
+pagina para logos https://seeklogo.com/
+
+colores segun ChatGPT:
+Los colores que tradicionalmente usan los bomberos suelen estar relacionados con la seguridad, la visibilidad y su equipamiento. Generalmente incluyen:
+
+Rojo brillante: Asociado al fuego, emergencia y su equipo (camiones, uniformes, etc.).
+
+Ejemplo: RGB (234, 40, 49) o tonos similares del rojo extraído.
+Amarillo dorado: Utilizado en cascos, emblemas o detalles de seguridad.
+
+Puedes usar un color como RGB (255, 223, 0).
+Negro: Representa seriedad, contraste y aparece en uniformes y emblemas.
+
+Ejemplo: RGB (0, 0, 0).
+Blanco: Usado para detalles, como texto o líneas de diseño.
+
+Ejemplo: RGB (255, 255, 255).
+Dorado metálico o amarillo claro: Para detalles en insignias o decoraciones oficiales.
+
+Ejemplo: RGB (255, 215, 0) (oro metálico).
